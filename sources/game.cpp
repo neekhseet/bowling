@@ -2,4 +2,4 @@
 
 void Game::roll(int pins) {};
 
-int Game::score() const { return -1; }
+int Game::score() const { return 0; }
