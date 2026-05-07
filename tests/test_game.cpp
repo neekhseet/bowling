@@ -49,3 +49,14 @@ TEST(GameTest, TripleStrike) {
     game.roll(0);
   EXPECT_EQ(game.score(), 86);
 }
+
+TEST(GameTest, Spare) {
+  Game game;
+  game.roll(7);
+  game.roll(3);
+  game.roll(4);
+  game.roll(2);
+  for (int i = 0; i < 16; i++)
+    game.roll(0);
+  EXPECT_EQ(game.score(), 20);
+}
