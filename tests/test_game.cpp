@@ -67,3 +67,13 @@ TEST(GameTest, Perfect) {
     game.roll(10);
   EXPECT_EQ(game.score(), 300);
 }
+
+TEST(GameTest, TenthFrameStrike) {
+  Game game;
+  for (int i = 0; i < 18; i++)
+    game.roll(0);
+  game.roll(10);
+  game.roll(4);
+  game.roll(3);
+  EXPECT_EQ(game.score(), 17);
+}
