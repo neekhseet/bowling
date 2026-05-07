@@ -77,3 +77,13 @@ TEST(GameTest, TenthFrameStrike) {
   game.roll(3);
   EXPECT_EQ(game.score(), 17);
 }
+
+TEST(GameTest, TenthFrameSpare) {
+  Game game;
+  for (int i = 0; i < 18; i++)
+    game.roll(0);
+  game.roll(6);
+  game.roll(4);
+  game.roll(3);
+  EXPECT_EQ(game.score(), 13);
+}
