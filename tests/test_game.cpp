@@ -24,3 +24,15 @@ TEST(GameTest, StrikeForFirstThrowInFrame) {
     game.roll(0);
   EXPECT_EQ(game.score(), 10 + 4 + 2 + 4 + 2);
 }
+
+TEST(GameTest, DoubleStrike) {
+  Game game;
+  game.roll(10);
+  game.roll(10);
+  game.roll(8);
+  game.roll(1);
+
+  for (int i = 0; i < 16; i++)
+    game.roll(0);
+  EXPECT_EQ(game.score(), 56);
+}
