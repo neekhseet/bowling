@@ -9,6 +9,8 @@ int Game::score() const {
     if (frame == 9) {
       if (rolls[rollIndex] == 10) {
         total += 10 + rolls[rollIndex + 1] + rolls[rollIndex + 2];
+      } else if (rolls[rollIndex] + rolls[rollIndex + 1] == 10) {
+        total += 10 + rolls[rollIndex + 2];
       } else {
         total += rolls[rollIndex] + rolls[rollIndex + 1];
       }
