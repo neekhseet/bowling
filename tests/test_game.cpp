@@ -60,3 +60,10 @@ TEST(GameTest, Spare) {
     game.roll(0);
   EXPECT_EQ(game.score(), 20);
 }
+
+TEST(GameTest, Perfect) {
+  Game game;
+  for (int i = 0; i < 12; i++)
+    game.roll(10);
+  EXPECT_EQ(game.score(), 300);
+}
