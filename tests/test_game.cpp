@@ -109,3 +109,14 @@ TEST(GameTest, ScoreWithStrike) {
   game.roll(4);
   EXPECT_EQ(game.score(), 24);
 }
+
+TEST(GameTest, SecondFrameScore) {
+  Game game;
+  game.roll(0);
+  game.roll(2);
+  game.roll(3);
+  game.roll(5);
+  for (int i = 0; i < 16; ++i)
+    game.roll(0);
+  EXPECT_EQ(game.frameScore(2), 8);
+}
