@@ -49,4 +49,14 @@ int Game::score() const {
   return total;
 }
 
-int Game::frameScore(int frame) const { return 8; }
+int Game::frameScore(int frame) const {
+  int rollIndex = 0;
+
+  for (int f = 1; f < frame; ++f) {
+    if (rollIndex >= rolls.size())
+      return 0;
+    rollIndex += 2;
+  }
+
+  return rolls[rollIndex] + rolls[rollIndex + 1];
+}
