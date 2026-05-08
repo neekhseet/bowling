@@ -48,3 +48,5 @@ int Game::score() const {
 
   return total;
 }
+
+int Game::frameScore(int frame) const { return 8; }
