@@ -87,3 +87,25 @@ TEST(GameTest, TenthFrameSpare) {
   game.roll(3);
   EXPECT_EQ(game.score(), 13);
 }
+
+TEST(GameTest, NoScoreForIncompleteFrame) {
+  Game game;
+  game.roll(3);
+  EXPECT_EQ(game.score(), 0);
+  game.roll(5);
+  EXPECT_EQ(game.score(), 8);
+  game.roll(3);
+  EXPECT_EQ(game.score(), 8);
+  game.roll(3);
+  EXPECT_EQ(game.score(), 14);
+}
+
+TEST(GameTest, ScoreWithStrike) {
+  Game game;
+  game.roll(10);
+  EXPECT_EQ(game.score(), 0);
+  game.roll(3);
+  EXPECT_EQ(game.score(), 0);
+  game.roll(4);
+  EXPECT_EQ(game.score(), 24);
+}
