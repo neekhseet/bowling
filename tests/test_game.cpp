@@ -131,3 +131,13 @@ TEST(GameTest, FrameScoreWithStrike) {
     game.roll(0);
   EXPECT_EQ(game.frameScore(1), 19);
 }
+
+TEST(GameTest, FrameScoreWithSpare) {
+  Game game;
+  game.roll(6);
+  game.roll(4);
+  game.roll(5);
+  for (int i = 0; i < 17; ++i)
+    game.roll(0);
+  EXPECT_EQ(game.frameScore(1), 15);
+}
