@@ -170,3 +170,19 @@ TEST(GameTest, FrameScoreOfTenthFrame) {
   game.roll(4);
   EXPECT_EQ(game.frameScore(10), 8);
 }
+
+TEST(GameTest, FrameScoreAfterStrike) {
+  Game game;
+  game.roll(10);
+  game.roll(2);
+  game.roll(3);
+  EXPECT_EQ(game.frameScore(2), 5);
+}
+
+TEST(GameTest, FrameScoreTenthFrameIncomplete) {
+  Game game;
+  for (int i = 0; i < 18; ++i)
+    game.roll(0);
+  game.roll(10);
+  EXPECT_EQ(game.frameScore(10), 0);
+}
