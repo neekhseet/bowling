@@ -70,5 +70,14 @@ int Game::frameScore(int frame) const {
     return 10 + rolls[rollIndex + 1] + rolls[rollIndex + 2];
   }
 
+  if (rollIndex + 1 >= rolls.size())
+    return 0;
+
+  if (rolls[rollIndex] + rolls[rollIndex + 1] == 10) {
+    if (rolls[rollIndex + 2] >= rolls.size())
+      return 0;
+    return 10 + rolls[rollIndex + 2];
+  }
+
   return rolls[rollIndex] + rolls[rollIndex + 1];
 }
