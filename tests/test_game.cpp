@@ -109,3 +109,80 @@ TEST(GameTest, ScoreWithStrike) {
   game.roll(4);
   EXPECT_EQ(game.score(), 24);
 }
+
+TEST(GameTest, SecondFrameScore) {
+  Game game;
+  game.roll(0);
+  game.roll(2);
+  game.roll(3);
+  game.roll(5);
+  for (int i = 0; i < 16; ++i)
+    game.roll(0);
+  EXPECT_EQ(game.frameScore(2), 8);
+}
+
+TEST(GameTest, FrameScoreWithStrike) {
+  Game game;
+  game.roll(10);
+  game.roll(5);
+  game.roll(4);
+
+  for (int i = 0; i < 17; ++i)
+    game.roll(0);
+  EXPECT_EQ(game.frameScore(1), 19);
+}
+
+TEST(GameTest, FrameScoreWithSpare) {
+  Game game;
+  game.roll(6);
+  game.roll(4);
+  game.roll(5);
+  for (int i = 0; i < 17; ++i)
+    game.roll(0);
+  EXPECT_EQ(game.frameScore(1), 15);
+}
+
+TEST(GameTest, FrameScoreOfTenthFrameWithStrike) {
+  Game game;
+  for (int i = 0; i < 18; ++i)
+    game.roll(0);
+  game.roll(10);
+  game.roll(4);
+  game.roll(3);
+  EXPECT_EQ(game.frameScore(10), 17);
+}
+
+TEST(GameTest, FrameScoreOfTenthFrameWithSpare) {
+  Game game;
+  for (int i = 0; i < 18; ++i)
+    game.roll(0);
+  game.roll(6);
+  game.roll(4);
+  game.roll(3);
+  EXPECT_EQ(game.frameScore(10), 13);
+}
+
+TEST(GameTest, FrameScoreOfTenthFrame) {
+  Game game;
+  for (int i = 0; i < 18; ++i)
+    game.roll(0);
+  game.roll(4);
+  game.roll(4);
+  EXPECT_EQ(game.frameScore(10), 8);
+}
+
+TEST(GameTest, FrameScoreAfterStrike) {
+  Game game;
+  game.roll(10);
+  game.roll(2);
+  game.roll(3);
+  EXPECT_EQ(game.frameScore(2), 5);
+}
+
+TEST(GameTest, FrameScoreTenthFrameIncomplete) {
+  Game game;
+  for (int i = 0; i < 18; ++i)
+    game.roll(0);
+  game.roll(10);
+  EXPECT_EQ(game.frameScore(10), 0);
+}

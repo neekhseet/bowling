@@ -9,6 +9,7 @@ class Game {
 public:
   void roll(int pins);
   int score() const;
+  int frameScore(int frame) const;
 };
 
 #endif
