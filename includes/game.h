@@ -4,6 +4,8 @@
 #include <vector>
 
 class Game {
+  static constexpr int MAX_FRAMES = 10;
+  static constexpr int MAX_PINS = 10;
   std::vector<int> rolls;
 
 public:
