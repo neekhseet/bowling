@@ -82,4 +82,12 @@ int Game::frameScore(int frame) const {
   return rolls[rollIndex] + rolls[rollIndex + 1];
 }
 
-int Game::rollScore(int frame, int roll) const { return 5; }
+int Game::rollScore(int frame, int roll) const {
+  int rollIndex = 0;
+
+  for (int f = 1; f < frame; ++f) {
+    rollIndex += 2;
+  }
+
+  return rolls[rollIndex + roll - 1];
+}
