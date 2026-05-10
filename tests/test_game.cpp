@@ -186,3 +186,11 @@ TEST(GameTest, FrameScoreTenthFrameIncomplete) {
   game.roll(10);
   EXPECT_EQ(game.frameScore(10), 0);
 }
+
+TEST(GameTest, SecondRollInFirstFrame) {
+  Game game;
+  game.roll(0);
+  game.roll(5);
+  for (int i = 0; i < 18; ++i)
+    EXPECT_EQ(game.rollScore(1, 2), 5);
+}
