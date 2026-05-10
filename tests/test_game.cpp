@@ -192,5 +192,21 @@ TEST(GameTest, SecondRollInFirstFrame) {
   game.roll(0);
   game.roll(5);
   for (int i = 0; i < 18; ++i)
-    EXPECT_EQ(game.rollScore(1, 2), 5);
+    game.roll(0);
+  EXPECT_EQ(game.rollScore(1, 2), 5);
+}
+
+TEST(GameTest, RollScoreWithStrike) {
+  Game game;
+  game.roll(0);
+  game.roll(5);
+  game.roll(10);
+  game.roll(5);
+  game.roll(4);
+  EXPECT_EQ(game.rollScore(1, 1), 0);
+  EXPECT_EQ(game.rollScore(1, 2), 5);
+  EXPECT_EQ(game.rollScore(2, 1), 10);
+  EXPECT_EQ(game.rollScore(2, 2), 0);
+  EXPECT_EQ(game.rollScore(3, 1), 5);
+  EXPECT_EQ(game.rollScore(3, 2), 4);
 }
