@@ -86,8 +86,22 @@ int Game::rollScore(int frame, int roll) const {
   int rollIndex = 0;
 
   for (int f = 1; f < frame; ++f) {
-    rollIndex += 2;
+    if (rollIndex >= rolls.size())
+      return 0;
+    if (rolls[rollIndex] == 10)
+      rollIndex += 1;
+    else
+      rollIndex += 2;
   }
 
-  return rolls[rollIndex + roll - 1];
+  if (rollIndex >= rolls.size())
+    return 0;
+
+  if (roll == 2 && rolls[rollIndex] == 10)
+    return 0;
+
+  if (rollIndex + (roll - 1) >= rolls.size())
+    return 0;
+
+  return rolls[rollIndex + (roll - 1)];
 }
