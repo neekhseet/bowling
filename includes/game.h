@@ -10,6 +10,7 @@ public:
   void roll(int pins);
   int score() const;
   int frameScore(int frame) const;
+  int rollScore(int frame, int roll) const;
 };
 
 #endif
