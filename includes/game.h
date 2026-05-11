@@ -9,6 +9,7 @@ class Game {
   std::vector<int> rolls;
 
   int startFrameIndex(int frame) const;
+  int scoreFrameInternal(int rollIndex) const;
 
 public:
   void roll(int pins);

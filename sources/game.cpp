@@ -102,3 +102,13 @@ int Game::startFrameIndex(int frame) const {
 
   return rollIndex;
 }
+
+int Game::scoreFrameInternal(int rollIndex) const {
+
+  if (rolls[rollIndex] == MAX_PINS)
+    return MAX_PINS + rolls[rollIndex + 1] + rolls[rollIndex + 2];
+  else if (rolls[rollIndex] + rolls[rollIndex + 1] == MAX_PINS)
+    return MAX_PINS + rolls[rollIndex + 2];
+
+  return rolls[rollIndex] + rolls[rollIndex + 1];
+}
