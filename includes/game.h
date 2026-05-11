@@ -8,6 +8,8 @@ class Game {
   static constexpr int MAX_PINS = 10;
   std::vector<int> rolls;
 
+  int startFrameIndex(int frame) const;
+
 public:
   void roll(int pins);
   int score() const;
