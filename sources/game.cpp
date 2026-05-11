@@ -50,16 +50,7 @@ int Game::score() const {
 }
 
 int Game::frameScore(int frame) const {
-  int rollIndex = 0;
-
-  for (int f = 1; f < frame; ++f) {
-    if (rollIndex >= rolls.size())
-      return 0;
-    if (rolls[rollIndex] == MAX_PINS)
-      rollIndex += 1;
-    else
-      rollIndex += 2;
-  }
+  int rollIndex = startFrameIndex(frame);
 
   if (rollIndex >= rolls.size())
     return 0;
@@ -83,16 +74,7 @@ int Game::frameScore(int frame) const {
 }
 
 int Game::rollScore(int frame, int roll) const {
-  int rollIndex = 0;
-
-  for (int f = 1; f < frame; ++f) {
-    if (rollIndex >= rolls.size())
-      return 0;
-    if (rolls[rollIndex] == MAX_PINS)
-      rollIndex += 1;
-    else
-      rollIndex += 2;
-  }
+  int rollIndex = startFrameIndex(frame);
 
   if (rollIndex >= rolls.size())
     return 0;
