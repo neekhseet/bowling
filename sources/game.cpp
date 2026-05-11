@@ -28,21 +28,11 @@ int Game::score() const {
     }
 
     if (rolls[rollIndex] == MAX_PINS) {
-      if (rollIndex + 2 >= rolls.size())
-        break;
-      total += MAX_PINS + rolls[rollIndex + 1] + rolls[rollIndex + 2];
-      rollIndex += 1;
-    } else if (rollIndex + 1 < rolls.size() &&
-               rolls[rollIndex] + rolls[rollIndex + 1] == MAX_PINS) {
-      if (rollIndex + 2 >= rolls.size())
-        break;
-      total += MAX_PINS + rolls[rollIndex + 2];
-      rollIndex += 2;
-    } else if (rollIndex + 1 < rolls.size()) {
-      total += rolls[rollIndex] + rolls[rollIndex + 1];
-      rollIndex += 2;
+      total += scoreFrameInternal(rollIndex);
+      rollIndex++;
     } else {
-      break;
+      total += scoreFrameInternal(rollIndex);
+      rollIndex += 2;
     }
   }
 
