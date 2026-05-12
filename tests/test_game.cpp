@@ -1,5 +1,6 @@
 #include "../includes/game.h"
 #include <gtest/gtest.h>
+#include <stdexcept>
 
 TEST(GameTest, GutterGame) {
   Game game;
@@ -209,4 +210,10 @@ TEST(GameTest, RollScoreWithStrike) {
   EXPECT_EQ(game.rollScore(2, 2), 0);
   EXPECT_EQ(game.rollScore(3, 1), 5);
   EXPECT_EQ(game.rollScore(3, 2), 4);
+}
+
+TEST(GameTest, RollOutOfRange) {
+  Game game;
+  EXPECT_THROW(game.roll(11), std::out_of_range);
+  EXPECT_THROW(game.roll(0), std::out_of_range);
 }
