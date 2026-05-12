@@ -1,4 +1,5 @@
 #include "../includes/game.h"
+#include <cmath>
 #include <gtest/gtest.h>
 #include <stdexcept>
 
@@ -222,4 +223,11 @@ TEST(GameTest, FrameOutOfRange) {
   Game game;
   EXPECT_THROW(game.frameScore(11), std::out_of_range);
   EXPECT_THROW(game.frameScore(-1), std::out_of_range);
+}
+
+TEST(GameTest, NotEnoughRollsInFrame) {
+  Game game;
+  for (int i = 0; i < 10; ++i)
+    game.roll(1);
+  EXPECT_THROW(game.frameScore(6), std::logic_error);
 }
