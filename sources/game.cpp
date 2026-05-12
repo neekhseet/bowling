@@ -1,6 +1,12 @@
 #include "../includes/game.h"
 
-void Game::roll(int pins) { rolls.push_back(pins); };
+void Game::roll(int pins) {
+  if (pins > MAX_PINS || pins < 0)
+    throw std::out_of_range(
+        "Pins must be greater or equal than 0, and less or equal than 10.");
+
+  rolls.push_back(pins);
+};
 
 int Game::score() const {
   int total = 0;
