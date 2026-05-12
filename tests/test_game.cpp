@@ -245,3 +245,11 @@ TEST(GameTest, InvalidRollValueInRollScore) {
   EXPECT_THROW(game.rollScore(2, -1), std::out_of_range);
   EXPECT_THROW(game.rollScore(2, 3), std::out_of_range);
 }
+
+TEST(GameTest, InvalidFrameValueInRollScore) {
+  Game game;
+  for (int i = 0; i < 20; ++i)
+    game.roll(0);
+  EXPECT_THROW(game.rollScore(0, 1), std::out_of_range);
+  EXPECT_THROW(game.rollScore(11, 1), std::out_of_range);
+}
