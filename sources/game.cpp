@@ -63,6 +63,8 @@ int Game::frameScore(int frame) const {
 }
 
 int Game::rollScore(int frame, int roll) const {
+  if (frame < 1 || frame > MAX_FRAMES)
+    throw std::out_of_range("Frame must be between 1 and 10.");
   if (roll < 1 || roll > 2)
     throw std::out_of_range("Number of roll can be only - 1 or 2.");
 
