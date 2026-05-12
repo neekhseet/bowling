@@ -215,5 +215,5 @@ TEST(GameTest, RollScoreWithStrike) {
 TEST(GameTest, RollOutOfRange) {
   Game game;
   EXPECT_THROW(game.roll(11), std::out_of_range);
-  EXPECT_THROW(game.roll(0), std::out_of_range);
+  EXPECT_THROW(game.roll(-1), std::out_of_range);
 }
