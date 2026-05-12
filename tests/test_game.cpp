@@ -231,3 +231,9 @@ TEST(GameTest, NotEnoughRollsInFrame) {
     game.roll(1);
   EXPECT_THROW(game.frameScore(6), std::logic_error);
 }
+
+TEST(GameTest, ThrowNotCompletedFrame) {
+  Game game;
+  game.roll(5);
+  EXPECT_THROW(game.frameScore(1), std::logic_error);
+}
