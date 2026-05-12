@@ -54,9 +54,11 @@ int Game::frameScore(int frame) const {
   int rollIndex = startFrameIndex(frame);
 
   if (rollIndex < 0 || rollIndex >= rolls.size())
+    throw std::logic_error("Not enough rolls for calculate this frame.");
+
+  if (rolls[rollIndex] != MAX_PINS && rollIndex + 1 >= rolls.size()) {
     return 0;
-  if (rolls[rollIndex] != MAX_PINS && rollIndex + 1 >= rolls.size())
-    return 0;
+  }
 
   return scoreFrameInternal(rollIndex);
 }
