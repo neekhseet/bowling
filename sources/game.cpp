@@ -1,6 +1,13 @@
 #include "../includes/game.h"
+#include <stdexcept>
 
-void Game::roll(int pins) { rolls.push_back(pins); };
+void Game::roll(int pins) {
+  if (pins > MAX_PINS || pins < 0)
+    throw std::out_of_range(
+        "Pins must be greater or equal than 0, and less or equal than 10.");
+
+  rolls.push_back(pins);
+};
 
 int Game::score() const {
   int total = 0;
@@ -40,19 +47,28 @@ int Game::score() const {
 }
 
 int Game::frameScore(int frame) const {
+  if (frame < 1 || frame > MAX_FRAMES)
+    throw std::out_of_range("Frames must be greater than 0, and less "
+                            "or equal than 10.");
+
   int rollIndex = startFrameIndex(frame);
 
   if (rollIndex < 0 || rollIndex >= rolls.size())
-    return 0;
+    throw std::logic_error("Not enough rolls for calculate this frame.");
+
   if (rolls[rollIndex] != MAX_PINS && rollIndex + 1 >= rolls.size())
-    return 0;
+    throw std::logic_error("Frame incomplete yet. Cant get score.");
 
   return scoreFrameInternal(rollIndex);
 }
 
 int Game::rollScore(int frame, int roll) const {
-  int rollIndex = startFrameIndex(frame);
+  if (frame < 1 || frame > MAX_FRAMES)
+    throw std::out_of_range("Frame must be between 1 and 10.");
+  if (roll < 1 || roll > 2)
+    throw std::out_of_range("Number of roll can be only - 1 or 2.");
 
+  int rollIndex = startFrameIndex(frame);
   if (rollIndex >= rolls.size())
     return 0;
 

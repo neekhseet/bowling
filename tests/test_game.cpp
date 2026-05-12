@@ -1,5 +1,7 @@
 #include "../includes/game.h"
+#include <cmath>
 #include <gtest/gtest.h>
+#include <stdexcept>
 
 TEST(GameTest, GutterGame) {
   Game game;
@@ -209,4 +211,45 @@ TEST(GameTest, RollScoreWithStrike) {
   EXPECT_EQ(game.rollScore(2, 2), 0);
   EXPECT_EQ(game.rollScore(3, 1), 5);
   EXPECT_EQ(game.rollScore(3, 2), 4);
+}
+
+TEST(GameTest, RollOutOfRange) {
+  Game game;
+  EXPECT_THROW(game.roll(11), std::out_of_range);
+  EXPECT_THROW(game.roll(-1), std::out_of_range);
+}
+
+TEST(GameTest, FrameOutOfRange) {
+  Game game;
+  EXPECT_THROW(game.frameScore(11), std::out_of_range);
+  EXPECT_THROW(game.frameScore(-1), std::out_of_range);
+}
+
+TEST(GameTest, NotEnoughRollsInFrame) {
+  Game game;
+  for (int i = 0; i < 10; ++i)
+    game.roll(1);
+  EXPECT_THROW(game.frameScore(6), std::logic_error);
+}
+
+TEST(GameTest, ThrowNotCompletedFrame) {
+  Game game;
+  game.roll(5);
+  EXPECT_THROW(game.frameScore(1), std::logic_error);
+}
+
+TEST(GameTest, InvalidRollValueInRollScore) {
+  Game game;
+  for (int i = 0; i < 20; ++i)
+    game.roll(0);
+  EXPECT_THROW(game.rollScore(2, -1), std::out_of_range);
+  EXPECT_THROW(game.rollScore(2, 3), std::out_of_range);
+}
+
+TEST(GameTest, InvalidFrameValueInRollScore) {
+  Game game;
+  for (int i = 0; i < 20; ++i)
+    game.roll(0);
+  EXPECT_THROW(game.rollScore(0, 1), std::out_of_range);
+  EXPECT_THROW(game.rollScore(11, 1), std::out_of_range);
 }
