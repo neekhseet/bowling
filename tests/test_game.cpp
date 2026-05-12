@@ -237,3 +237,11 @@ TEST(GameTest, ThrowNotCompletedFrame) {
   game.roll(5);
   EXPECT_THROW(game.frameScore(1), std::logic_error);
 }
+
+TEST(GameTest, InvalidRollValueInRollScore) {
+  Game game;
+  for (int i = 0; i < 20; ++i)
+    game.roll(0);
+  EXPECT_THROW(game.rollScore(2, -1), std::out_of_range);
+  EXPECT_THROW(game.rollScore(2, 3), std::out_of_range);
+}
