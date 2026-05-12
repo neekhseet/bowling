@@ -48,7 +48,7 @@ int Game::score() const {
 
 int Game::frameScore(int frame) const {
   if (frame < 1 || frame > MAX_FRAMES)
-    throw std::out_of_range("Frames must be greater or equal than 0, and less "
+    throw std::out_of_range("Frames must be greater than 0, and less "
                             "or equal than 10.");
 
   int rollIndex = startFrameIndex(frame);
