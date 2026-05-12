@@ -63,8 +63,10 @@ int Game::frameScore(int frame) const {
 }
 
 int Game::rollScore(int frame, int roll) const {
-  int rollIndex = startFrameIndex(frame);
+  if (roll < 1 || roll > 2)
+    throw std::out_of_range("Number of roll can be only - 1 or 2.");
 
+  int rollIndex = startFrameIndex(frame);
   if (rollIndex >= rolls.size())
     return 0;
 
