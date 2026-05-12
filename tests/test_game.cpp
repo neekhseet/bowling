@@ -217,3 +217,9 @@ TEST(GameTest, RollOutOfRange) {
   EXPECT_THROW(game.roll(11), std::out_of_range);
   EXPECT_THROW(game.roll(-1), std::out_of_range);
 }
+
+TEST(GameTest, FrameOutOfRange) {
+  Game game;
+  EXPECT_THROW(game.frameScore(11), std::out_of_range);
+  EXPECT_THROW(game.frameScore(-1), std::out_of_range);
+}
